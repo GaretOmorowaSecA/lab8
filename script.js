@@ -1,5 +1,5 @@
 document.addEventListener("DOMContentLoaded", () => {
-    // Display current date and time
+    
     const dateTimeElement = document.getElementById("date-time");
     setInterval(() => {
         const now = new Date();
@@ -8,17 +8,17 @@ document.addEventListener("DOMContentLoaded", () => {
 
     const locationElement = document.getElementById("location");
     const weatherElement = document.getElementById("weather");
-    const weatherApiKey = 'YOUR_OPENWEATHERMAP_API_KEY';
-    const locationApiKey = 'YOUR_IPGEOLOCATION_API_KEY';
+    const weatherApiKey = 'ff095e521d638dfd4df69bd62e720832';
+    const locationApiKey = '2fab46d546db4261a6338d91f50256f8';
 
-    // Fetch current location from IP geolocation API
+    
     fetch(`https://api.ipgeolocation.io/ipgeo?apiKey=${locationApiKey}`)
         .then(response => response.json())
         .then(data => {
             const { latitude, longitude, city, country_name } = data;
             locationElement.textContent = `Location: ${city}, ${country_name}`;
 
-            // Fetch weather for the current location
+            
             return fetch(`https://api.openweathermap.org/data/2.5/weather?lat=${latitude}&lon=${longitude}&appid=${weatherApiKey}&units=metric`);
         })
         .then(response => response.json())
